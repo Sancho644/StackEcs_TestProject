@@ -16,7 +16,7 @@ namespace Infrastructure.Systems.PlayerSystems
                 ref Player player = ref _filter.Get1(i);
                 ref PlayerInputData input = ref _filter.Get2(i);
 
-                Vector3 movementVector = input.MoveInput += Physics.gravity;
+                Vector3 movementVector = input.MoveInput + Physics.gravity;
 
                 player.PlayerController.Move(player.PlayerSpeed * movementVector * Time.deltaTime);
             }

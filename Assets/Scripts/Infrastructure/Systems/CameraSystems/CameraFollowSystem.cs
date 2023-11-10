@@ -3,7 +3,7 @@ using Infrastructure.Components.PlayerComponents;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Infrastructure.Systems.Camera
+namespace Infrastructure.Systems.CameraSystems
 {
     public class CameraFollowSystem : IEcsRunSystem
     {
@@ -16,7 +16,7 @@ namespace Infrastructure.Systems.Camera
         {
             foreach (int i in _filter)
             {
-                ref var player = ref _filter.Get1(i);
+                ref Player player = ref _filter.Get1(i);
 
                 Quaternion rotation = Quaternion.Euler(_staticData.CameraRotationAngelX, 0, 0);
                 Vector3 position = rotation * new Vector3(0, 0, -_staticData.CameraDistance) + FollowingPointPosition(player);

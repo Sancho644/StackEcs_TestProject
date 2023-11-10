@@ -7,7 +7,7 @@ namespace Infrastructure.Components.PlayerComponents
         public Transform PlayerTransform;
         public Animator PlayerAnimator;
         public CharacterController PlayerController;
+        public PlayerView PlayerView;
         public float PlayerSpeed;
-        public int StackCount;
     }
 }

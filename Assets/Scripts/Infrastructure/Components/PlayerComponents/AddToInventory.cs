@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Components.PlayerComponents
 {
-    public struct PlayerPickupLoot : IEcsIgnoreInFilter
+    public struct AddToInventory : IEcsIgnoreInFilter
     {
     }
 }

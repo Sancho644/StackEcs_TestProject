@@ -1,6 +1,7 @@
 using Data;
-using Infrastructure.Systems.Camera;
+using Infrastructure.Systems.CameraSystems;
 using Infrastructure.Systems.DropLootPointSystems;
+using Infrastructure.Systems.InventorySystems;
 using Infrastructure.Systems.LootSystems;
 using Infrastructure.Systems.PlayerSystems;
 using Leopotam.Ecs;
@@ -27,9 +28,10 @@ namespace Infrastructure
                 .Add(new PlayerInputSystem())
                 .Add(new PlayerMoveSystem())
                 .Add(new PlayerAnimationSystem())
-                .Add(new PlayerStackWriterSystem())
+                .Add(new InventoryAddLootSystem())
                 .Add(new PlayerAnimatePickupSystem())
                 .Add(new CameraFollowSystem())
+                .Add(new InventoryInitSystem())
                 .Add(new LootSpawnInitSystem())
                 .Add(new LootSpawnSystem())
                 .Add(new DropLootPointInitSystem())

@@ -7,6 +7,9 @@ namespace Infrastructure.Systems.PlayerSystems
 {
     public class PlayerInputSystem : IEcsRunSystem
     {
+        private const string Horizontal = "Horizontal";
+        private const string Vertical = "Vertical";
+        
         private EcsFilter<Player, PlayerInputData> _filter;
 
         private SceneData _sceneData;
@@ -15,8 +18,8 @@ namespace Infrastructure.Systems.PlayerSystems
         {
             foreach (int i in _filter)
             {
-                ref var player = ref _filter.Get1(i);
-                ref var input = ref _filter.Get2(i);
+                ref Player player = ref _filter.Get1(i);
+                ref PlayerInputData input = ref _filter.Get2(i);
 
                 input.MoveInput = GetMovementVector(player);
             }
@@ -24,7 +27,7 @@ namespace Infrastructure.Systems.PlayerSystems
 
         private Vector3 GetMovementVector(Player player)
         {
-            Vector2 inputVector = new Vector2(SimpleInput.GetAxis("Horizontal"), SimpleInput.GetAxis("Vertical"));
+            Vector2 inputVector = new Vector2(SimpleInput.GetAxis(Horizontal), SimpleInput.GetAxis(Vertical));
 
             Vector3 movementVector = Vector3.zero;
 

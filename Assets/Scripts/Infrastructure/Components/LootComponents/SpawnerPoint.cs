@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Leopotam.Ecs;
+using UnityEngine;
 
 namespace Infrastructure.Components.LootComponents
 {
     public class SpawnerPoint
     {
-        public GameObject LootGameObject;
+        public EcsEntity LootEntity;
         public Transform SpawnTransform;
     }
 }

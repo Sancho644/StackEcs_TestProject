@@ -17,7 +17,7 @@ namespace Infrastructure.Systems.LootSystems
             EcsEntity lootSpawnerEntity = _ecsWorld.NewEntity();
 
             lootSpawnerEntity.Get<SpawnLoot>();
-            ref var lootList = ref lootSpawnerEntity.Get<LootList>();
+            ref LootList lootList = ref lootSpawnerEntity.Get<LootList>();
 
             lootList.SpawnerPointsList = new List<SpawnerPoint>();
 
@@ -25,7 +25,6 @@ namespace Infrastructure.Systems.LootSystems
             {
                 lootList.SpawnerPointsList.Add(new SpawnerPoint()
                 {
-                    LootGameObject = null,
                     SpawnTransform = lootSpawnerPoint
                 });
             }

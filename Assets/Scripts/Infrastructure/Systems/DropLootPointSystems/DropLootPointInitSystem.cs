@@ -15,15 +15,17 @@ namespace Infrastructure.Systems.DropLootPointSystems
         {
             EcsEntity dropLootPointEntity = _ecsWorld.NewEntity();
 
-            var dropLootGameObject = Object.Instantiate(_staticData.DropLootPointPrefab, _sceneData.LootDropSpawnPoint.position, Quaternion.identity);
+            GameObject dropLootGameObject = Object.Instantiate(_staticData.DropLootPointPrefab, _sceneData.LootDropSpawnPoint.position, Quaternion.identity);
 
             ref DropLootPoint dropLootPoint = ref dropLootPointEntity.Get<DropLootPoint>();
-            DropLootPointView dropLootPointView = dropLootGameObject.GetComponent<DropLootPointView>();
-
+            dropLootPoint.DropLootPointView = dropLootGameObject.GetComponent<DropLootPointView>();
             dropLootPoint.DropLootTransform = dropLootGameObject.transform;
-
-            dropLootPointView.DropLootEntity = dropLootPointEntity;
-            dropLootPointView.SetCount(dropLootPoint.StackCount);
+            dropLootPoint.DropLootPointView.SetCount(dropLootPoint.StackCount);
+            
+            dropLootPoint.DropLootPointView.Trigger(() =>
+            {
+                dropLootPointEntity.Get<DropLoot>();
+            });
         }
     }
 }

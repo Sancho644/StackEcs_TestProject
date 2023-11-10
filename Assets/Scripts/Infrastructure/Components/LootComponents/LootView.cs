@@ -1,17 +1,20 @@
-﻿using Leopotam.Ecs;
+﻿using System;
 using UnityEngine;
 
 namespace Infrastructure.Components.LootComponents
 {
     public class LootView : MonoBehaviour
     {
-        public EcsEntity Entity;
-        
+        private Action OnTrigger;
+
         private void OnTriggerEnter(Collider other)
         {
-            Entity.Get<HasLoot>().loot.Get<LootPickup>();
-            
-            Destroy(gameObject);
+            OnTrigger?.Invoke();
+        }
+
+        public void Trigger(Action callback)
+        {
+            OnTrigger = callback;
         }
     }
 }

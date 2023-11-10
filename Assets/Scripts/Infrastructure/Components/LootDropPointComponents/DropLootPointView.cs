@@ -1,4 +1,4 @@
-﻿using Leopotam.Ecs;
+﻿using System;
 using TMPro;
 using UnityEngine;
 
@@ -8,9 +8,9 @@ namespace Infrastructure.Components.LootDropPointComponents
     {
         [SerializeField] private TextMeshProUGUI _stackValue;
 
-        public EcsEntity DropLootEntity;
-
         private int _stackCount;
+
+        private Action OnTrigger;
 
         public void SetCount(int value)
         {
@@ -26,7 +26,12 @@ namespace Infrastructure.Components.LootDropPointComponents
 
         private void OnTriggerEnter(Collider other)
         {
-            DropLootEntity.Get<DropLoot>();
+            OnTrigger?.Invoke();
+        }
+
+        public void Trigger(Action callback)
+        {
+            OnTrigger = callback;
         }
     }
 }

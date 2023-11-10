@@ -23,6 +23,7 @@ namespace Infrastructure.Systems.PlayerSystems
             GameObject playerGameObject = Object.Instantiate(_staticData.PlayerPrefab, _sceneData.PlayerSpawnPoint.position, Quaternion.identity);
             player.PlayerController = playerGameObject.GetComponent<CharacterController>();
             player.PlayerAnimator = playerGameObject.GetComponent<Animator>();
+            player.PlayerView = playerGameObject.GetComponent<PlayerView>();
             player.PlayerTransform = playerGameObject.transform;
             player.PlayerSpeed = _staticData.PlayerSpeed;
         }

@@ -1,13 +1,16 @@
 ﻿using Infrastructure.Components.PlayerComponents;
 using Leopotam.Ecs;
+using UnityEngine;
 
 namespace Infrastructure.Systems.PlayerSystems
 {
     public class PlayerAnimatePickupSystem : IEcsRunSystem
     {
-        private const string PickupAnimationKey = "WeaponType_int";
+        private static readonly int PickupAnimationKey = Animator.StringToHash("WeaponType_int");
+        
+        private const int PickupLoot = 1;
 
-        private EcsFilter<Player, PlayerPickupLoot> _filter;
+        private EcsFilter<Player, AddToInventory> _filter;
 
         public void Run()
         {
@@ -16,10 +19,10 @@ namespace Infrastructure.Systems.PlayerSystems
                 ref EcsEntity playerEntity = ref _filter.GetEntity(i);
                 ref Player player = ref _filter.Get1(i);
 
-                player.PlayerAnimator.SetInteger(PickupAnimationKey, 1);
-                player.PlayerTransform.GetComponent<PlayerView>().LootPickup();
+                player.PlayerAnimator.SetInteger(PickupAnimationKey, PickupLoot);
+                player.PlayerView.LootPickup();
 
-                playerEntity.Del<PlayerPickupLoot>();
+                playerEntity.Del<AddToInventory>();
             }
         }
     }

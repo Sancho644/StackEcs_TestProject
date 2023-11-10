@@ -6,6 +6,8 @@ namespace Infrastructure.Systems.PlayerSystems
 {
     public class PlayerAnimationSystem : IEcsRunSystem
     {
+        private const float DampTime = 0.1f;
+        
         private static readonly int PlayerSpeed = Animator.StringToHash("Speed_f");
 
         private EcsFilter<Player> _filter;
@@ -14,9 +16,9 @@ namespace Infrastructure.Systems.PlayerSystems
         {
             foreach (int i in _filter)
             {
-                ref var player = ref _filter.Get1(i);
+                ref Player player = ref _filter.Get1(i);
 
-                player.PlayerAnimator.SetFloat(PlayerSpeed, player.PlayerController.velocity.magnitude, 0.1f, Time.deltaTime);
+                player.PlayerAnimator.SetFloat(PlayerSpeed, player.PlayerController.velocity.magnitude, DampTime, Time.deltaTime);
             }
         }
     }
